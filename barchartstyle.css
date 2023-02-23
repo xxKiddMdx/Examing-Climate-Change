@@ -1,0 +1,95 @@
+h4.title {
+  font-size: 50px;
+  display: flex;
+}
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+input {
+  font-size: 1rem;
+}
+
+.user-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+#chart-area {
+  margin: 30px;
+}
+
+.card {
+  border: none;
+  background-color: white;
+}
+
+.header {
+  font-size: medium;
+}
+
+.card > .header {
+  margin-bottom: 0.25rem;
+}
+
+.grid {
+/*   border: 1px solid black; */
+/*   margin: 1rem;
+  padding: 2rem 2rem; */
+  text-align: center;
+}
+.container {
+  display: inline-block;
+/*   border: 1px solid red; */
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+#search {
+  margin: auto;
+  width: 200px;
+}
+
+label {
+  font-size: larger;
+}
+
+.country-cards {
+  width: 200px;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: bisque;
+}
+
+.bar {
+  cursor: pointer;
+}
+
+.bar:hover {
+  fill: bisque;
+}
+
+#chart-area {
+  display: inline-block;
+}
+.temp_bar {
+  display: inline-block;
+}
+
+button {
+  cursor: pointer;
+  position: flex;
+}

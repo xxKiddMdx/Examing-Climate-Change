@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the page head - it contains info the browser uses to display the page
+      You won't see what's in the head in the page
+      Scroll down to the body element for the page content
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <title>Climate Change</title>
+
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+      name="description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Hello World!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+    <meta
+      property="og:description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/barchartstyle.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+    <script defer src="https://d3js.org/d3.v7.min.js"></script>
+    <script defer src="barchart.js"></script>
+
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="worldmap.js" defer type="module"></script>
+    <!--     <script src="main.js" defer type="module"></script> -->
+    <h1 class="title">Examining Climate Change</h1>
+
+    <div id="navbar">
+      <nav>
+        <a href="index.html">About Our Project</a>
+
+        <a href="temp.html"> Temperature Change and Fossil Fuel Emissions</a>
+
+        <a href="c02.html">Carbon Dioxide Emissions</a>
+
+        <a href="disasters.html">Frequency of Natural Disasters</a>
+        <a href="project-info.html">Project Info Page</a>
+      </nav>
+    </div>
+  </head>
+  <body>
+    <div class="content" role="main">
+      <!-- This is the start otf content for our page -->
+      <h2>
+       How much CO2 does your country produce compared to the rest of the world?
+      
+      </h2>
+      <p class="description">
+        We gather information from 170 countries' Fossil Fuel and Cement Output
+        in 2014, which accounts for 75% of total CO2 emission. Type in search
+        bar to select one country. You can also click on the map to select
+        another country.
+      </p>
+
+      <div class="search-wrapper">
+        <label for="search" class = "description-ins"
+          >Search countries and click. Type all to see all available countries.
+          Clear input to hide the search list.</label
+        >
+        <input type="search" id="search" data-search />
+      </div>
+      <div class="country-cards" data-country-cards-countainer></div>
+      <template data-user-template>
+        <div class="card"><div class="header" data-header></div></div>
+      </template>
+      <div>
+<!--         <p style="text-align: center">Fossile Fuel and Cement Output in 2014</p>
+ -->
+        <div id="chart-area" style="display: inline-block"></div>
+<!--         <div class="temp_bar" style="display: inline-block"></div>
+        <button type="button" class="button2">Clear Order</button> -->
+      </div>
+      
+       <p class = "description-ins">
+         Click on countries below to compare their C02 emissions in the bar chart on the right. 
+       </p>
+
+      <div class = "grid">
+        <div class = "container">
+          
+          <div class="worldmap"></div>
+        </div>
+        <div class = "container">
+        <div class="temp_bar" style="display: inline-block"></div>
+        <button type="button" class="button2">Clear Order</button>
+
+<!--           <div class="linked_bar"></div> -->
+        </div>
+
+      </div>
+
+      <h2 class="learnmore-combat">
+        Something you can do to help combat this...
+      </h2>
+      <p class="description-combat">
+        Take a few of these easy steps to help limit our fossil fuel usage and
+        our carbon footprint.
+      </p>
+      <ul>
+        <li><a href="https://www.energysage.com/">Installing solar panels and use renewable energy</a></li>
+        <li>Use bikes to commute</li>
+        <li>Reduce, reuse, recycle</li>
+      </ul>
+    </div>
+
+    <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
+    <footer class="footer content">
+      <div class="footercontainer">
+        <div>Visualization Final Project</div>
+        <div>Sarah Oliver, Le Lyu, Peiyu Zhong, Ashna Ramaswamy</div>
+        <div>Boston College</div>
+      </div>
+    </footer>
+  </body>
+</html>

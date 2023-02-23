@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the page head - it contains info the browser uses to display the page
+      You won't see what's in the head in the page
+      Scroll down to the body element for the page content
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <title>Climate Change</title>
+
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+      name="description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Hello World!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+    <meta
+      property="og:description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+    <script defer src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="https://unpkg.com/topojson@3"></script>
+
+    <script src="main.js" defer type="module"></script>
+    <h1 class="title">Examining Climate Change</h1>
+
+    <div id="navbar">
+
+        <nav>
+
+          <a href="index.html">About Our Project</a>
+
+        <a href="temp.html"> Temperature Change and Fossil Fuel Emissions</a>
+
+        <a href="c02.html">Carbon Dioxide Emissions</a>
+
+        <a href="disasters.html">Frequency of Natural Disasters</a>
+        <a href="project-info.html">Project Info Page</a>
+
+        </nav>
+
+    </div>
+  </head>
+  <body>
+    <div class="content" role="main">
+      <!-- This is the start of content for our page -->
+      <h2>How Has the Use of Fossil Fuels Impacted Global Temperatures over Time? </h2>
+      
+      
+      
+      <p class = "description">
+       Follow the story of Temperature Change all the way from 1740 until 2020.Check out the graph to see how fossil fuels relate to an increase in temperature,
+        and visualize the global increase of temperature on the heatmap on the right. 
+
+      </p>
+      <br>
+      <div class = "grid">
+        <div class = "container">
+           <p class = "description-ins">
+       See the history of Fossil Fuel Emissions and Temperature Change. <br>
+      </p>
+          
+          <div class="trendchart">
+                 <div class="tooltip"></div>
+          </div>
+            
+            <div class = "container">
+               <button>
+              <div id="sort">Timeline On/Off</div>
+            </button>
+              <button>
+              <div id = "restart">Restart Path</div>
+            </button>
+
+          </div>
+        </div>
+     
+        <div class = "container">
+           <p class = "description-ins">
+       Slide the bar below to see countries' average temperature change.
+          </p>
+
+          <div class = "world-heat-map">
+          </div>
+            <div class="container">
+              <input id="slider" type="range" min="1743" max = "2020" step="1" value="1743">
+              <span id="date">1743</span>
+            </div>
+        </div>
+
+       </div>
+      
+      <br>
+      <br>
+      
+      <p class = "description-ins">
+        Use the area chart to zoom into key parts of the stacked area chart
+        below to see what types of fossil fuels were being used at what time! Hover over to start the zoom. 
+      
+      </p>
+      
+      <div class = "areachart"> </div>
+
+      <div class = "stacked-chart"> </div>
+            <div class="tooltip_stacked"></div>
+
+      
+      <h2 class = "learnmore-combat">
+       Something you can do to help combat this...
+      </h2>
+      <p class = "description-combat">
+Take a few of these easy steps to help limit our fossil fuel usage and our carbon footprint. 
+      <ul>
+          <li> Walk to places instead of driving when possible.</li>
+          <li> Carpool!</li>
+          <li> Conserve power... turn off lights, computers, TVs when not in use.</li>
+      </ul>
+      </p>
+      
+    </div> 
+      <!--     inside script.js we would select body, create svg, and append a clickable world map to it. which would create 3+ visualizations     -->
+     
+   
+    <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
+     <footer class="footer content">
+    <div class="footercontainer">
+      <div>Visualization Final Project</div>
+      <div>Sarah Oliver, Le Lyu, Peiyu Zhong, Ashna Ramaswamy </div>
+      <div>Boston College</div>
+    </div>
+  </footer>
+  </body>
+</html>

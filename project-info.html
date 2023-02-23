@@ -1,0 +1,240 @@
+<!-- this file contains our project info -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the page head - it contains info the browser uses to display the page
+      You won't see what's in the head in the page
+      Scroll down to the body element for the page content
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <title>Project Information</title>
+
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+      name="description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Hello World!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+    <meta
+      property="og:description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+    <script defer src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="https://unpkg.com/topojson@3"></script>
+
+    <script src="main.js" defer type="module"></script>
+    <h1 class="title">Examining Climate Change</h1>
+
+    <div id="navbar">
+      <nav>
+        <a href="index.html">About Our Project</a>
+
+        <a href="temp.html"> Temperature Change and Fossil Fuel Emissions</a>
+
+        <a href="c02.html">Carbon Dioxide Emissions</a>
+
+        <a href="disasters.html">Frequency of Natural Disasters</a>
+        <a href="project-info.html">Project Info Page</a>
+      </nav>
+    </div>
+  </head>
+  <body>
+    <div>
+      <h4>Page 1: Temperature Change and Fossil Fuel Emissions</h4>
+      <p>Members: Sarah Oliver</p>
+      <ul>
+        <li>
+          <p>
+            Idea Generation and data processing: I wanted to use interactions to
+            show change in termperature over time. First I created some ideas of
+            how I wanted to do that, and decided an interesting layor would be
+            to compare this to fossil fuel emissions. I found the right data and
+            from there decided what I could implement.
+          </p>
+        </li>
+        <li>
+          <p>
+            Data Processing and Design: I had to make a lot of edits to the data
+            throughout the course of the visualization making. I mostly made all
+            the edits using javascript, but some were made in excel to the
+            original file. I had to reshape the data and find global averages,
+            combining all the information for each country. For design, It was a
+            lot of trial and error and learning new things. I tried to
+            originally implement both the animations for the line chart and the
+            heatmap in vegalite, which proved to be unsuccessful so I moved to
+            d3. This was actually a lot easier than I thought it would be and I
+            think I learned a lot about visualizations, d3, and problem solving
+            in the process. I also made the area chart and the stacked area
+            chart with brushing and linking based off our class example.
+          </p>
+        </li>
+        <li>
+          I also helped with the update selection for the bar chart on the C02
+          page. I am not sure if the technique I used was the perfect way of
+          doing it, but it worked!
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Page 2: Carbon Dioxide Emissions</h4>
+      <p>Members: Le Lyu, Peiyu Zhong</p>
+      <ul>
+        <li>
+          <p>
+            Idea Generation and data processing: we want to make two
+            functionalities, meaning two kinds of User Interactions (UIs), in
+            this web page. The first UI consists of a search box and a bar
+            chart, which allows the user to search for a country and compare its
+            CO2 output to the world's average. The second UI consists of a map
+            and a bar chart, which allows the user to click a country on the map
+            and customize a comparison list. A clear order button is added to
+            clear the bars and scales in the second bar chart in case it gets
+            too messy. We used the data from data.world which has 20+ categories
+            of data and from late 18th century all the way up to 2014. Before
+            using it, I (Le) downloaded it and opened in numbers, then manually
+            deleted all the data categories that I don't need and only kept the
+            data for the year 2014. By the end of my data processing, the csv
+            file contains 171 lines of four different data categories: year,
+            country name, the countries' CO2 output in 2014, and the overall CO2
+            output in the world.
+          </p>
+        </li>
+        <li>
+          <p>
+            Implementation: the tool used for the most is d3.js. For the first
+            UI, I (Le) followed through a vedio on Youtube and read
+            documentations in order to implement a search box. Inside the search
+            box, whenever a type event is triggered, the (precomputed) search
+            items (cards) that include the input values are displayed. By
+            default and when the input is empty, the cards are hidden. Whenever
+            the type events are present, the cards get displayed. Then, there
+            are event listeners to the cards, and the cursor and background
+            color are changed to prompt the user to click a card. When the click
+            event happens, d3 will open the data, filter it based on the name of
+            the country, and pass the filtered data to the render barchart
+            function. Then the barchart gets generated. For the second UI,
+            inspired by the third miniproject, I (Peiyu) downloaded the world
+            and use d3 to implement it. Because bar-chart has a great advantage
+            when comparing different objects, we thought of using bar-chart to
+            compare the CO2 emissions of different countries. When the user
+            clicks on a country, the icon will form a bar representing that
+            country's CO2 emissions in 2014. And the height of each bar will be
+            adjusted according to the maximum value existed in the graph.
+            Besides, we also created a "Clear Order" button, which allows users
+            to clear all the existed data. In other words, the chart will be
+            reinitialized.
+          </p>
+        </li>
+        <li>
+          <p>
+            Improvements made: we made changes on a lot of the places. At first
+            we did not come up with the world map in d3 so we chose vegalite,
+            but we then changed back into d3. Second, in the prototype, the
+            search box cards (search items) are displayed first by default,
+            taking a lot of the space. But its logic is changed so that the
+            functionality is more clean. Third, we did not have a good country
+            comparision visualization in the prototype, so we added the
+            customizable bar chart given output from the click events on the
+            map.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div>
+        <h4>Natural Disasters</h4>
+        <p>Members: Ashna Ramaswamy</p>
+        <ul>
+          <li>
+            <p>
+              Idea Generation and data processing: I originally wanted to create
+              a line chart showing the impact of climate change on changes in
+              glacial mass. I found data and tried to use Vega-lite to create a
+              linked chart with a brushing feature, however the data was not
+              valuable enough for the story. Instead, I decided to search for
+              data related to disasters to break down how the frequency and
+              types of natural disasters have changed over time. I also created the story board for the low-fidelity prototype. The datasets were difficult to work with at first since Vega-lite needed specific formats, so I tried a lot of conversions through Github and ultimately used a csv file through d3.
+            </p>
+          </li>
+          <li>
+            <p>
+              Implementation: I originally used Vega-lite to create a line and
+              bar chart that were linked together showing the average mass of
+              glaciers over time and the number of observations. The chart had a
+              brushing feature to see the number of observations in the bar
+              chart corresponding to the area brushed of the line chart. Since
+              this wasn't valuable, I switched to a stacked bar chart with a
+              different data set, which includes natural disasters over the
+              years grouped by category.
+            </p>
+          </li>
+          <li>
+            <p>
+              Improvements: I added a zoom feature to the stacked bar chart to
+              compare the frequency of natural disasters in adjacent years. I attempted to add a tooltip based on lab 4, but the position of the tooltip stayed in the bottom left, underneath the chart, and the position would not update upon mouseover. Furthermore, the data wouldn't display. I wasn't sure how to improve this, so I abandoned the tooltip.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a
+      href="https://cdn.glitch.global/7d3225d5-a61d-46af-843a-9df4a1c38194/video1896116913.mp4?v=1670302455520"
+    >
+      Showcase Video</a
+    >
+
+    <a
+      href="https://cdn.glitch.global/7d3225d5-a61d-46af-843a-9df4a1c38194/video1308780917.mp4?v=1670303788781"
+    >
+      Glitch Rewind</a
+    >
+
+    <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
+    <footer class="footer content">
+      <div class="footercontainer">
+        <div>Visualization Final Project</div>
+        <div>Sarah Oliver, Le Lyu, Peiyu Zhong, Ashna Ramaswamy</div>
+        <div>Boston College</div>
+      </div>
+    </footer>
+  </body>
+</html>

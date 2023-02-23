@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the page head - it contains info the browser uses to display the page
+      You won't see what's in the head in the page
+      Scroll down to the body element for the page content
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <title>Climate Change</title>
+
+    <!-- Meta tags for SEO and social sharing -->
+    <link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
+    <meta
+      name="description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Hello World!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
+    <meta
+      property="og:description"
+      content="A simple website, built with Glitch. Remix it to get your own."
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+    <script defer src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="https://unpkg.com/topojson@3"></script>
+
+    <script src="main.js" defer type="module"></script>
+    <div id="navbar">
+
+        <nav>
+
+           <a href="index.html">About Our Project</a>
+
+        <a href="temp.html"> Temperature Change and Fossil Fuel Emissions</a>
+
+        <a href="c02.html">Carbon Dioxide Emissions</a>
+
+        <a href="disasters.html">Frequency of Natural Disasters</a>
+        <a href="project-info.html">Project Info Page</a>
+        </nav>
+
+    </div>
+  </head>
+  <body>
+    <div class="content" role="main">
+      <!-- This is the start of content for our page -->
+      <h1 class="title">Climate Change</h1>
+      <p class = "description">
+        Welcome to our project about Climate Change. We decided to study climate
+        change because it is something that has a large effect on everybody, and
+        we think it is very important that we raise awareness around the issue.
+        Our visualizations tell the story of temperature change, CO2 emissions,
+        and glacier mass over the years. Our hopes for this project is that
+        viewers will begin to understand our effect on our climate, and begin to
+        understand the impact of our actions.
+      </p>
+      
+      <!--     inside script.js we would select body, create svg, and append a clickable world map to it. which would create 3+ visualizations     -->
+      <div id="map">
+        <script>
+          var worldMap = {
+            $schema: "https://vega.github.io/schema/vega/v5.json",
+            description: "A configurable map of countries of the world.",
+            width: 900,
+            height: 500,
+            autosize: "none",
+
+            signals: [
+              { name: "invert", value: false, bind: { input: "checkbox" } },
+            ],
+
+            projections: [
+              {
+                name: "projection",
+              },
+            ],
+
+            data: [
+              {
+                name: "world",
+                url: "https://raw.githubusercontent.com/vega/datalib/master/test/data/world-110m.json",
+                format: {
+                  type: "topojson",
+                  feature: "countries",
+                },
+              },
+              {
+                name: "graticule",
+                transform: [{ type: "graticule" }],
+              },
+            ],
+
+            marks: [
+              {
+                type: "shape",
+                from: { data: "graticule" },
+                encode: {
+                  update: {
+                    strokeWidth: { value: 1 },
+                    stroke: { signal: "invert ? '#444' : '#ddd'" },
+                    fill: { value: null },
+                  },
+                },
+                transform: [{ type: "geoshape", projection: "projection" }],
+              },
+              {
+                type: "shape",
+                from: { data: "world" },
+                encode: {
+                  update: {
+                    stroke: { signal: "invert ? '#777' : '#bbb'" },
+                    fill: { signal: "invert ? '#fff' : '#000'" },
+                    zindex: { value: 0 },
+                  },
+                  hover: {
+                    stroke: { value: "firebrick" },
+                    zindex: { value: 1 },
+                  },
+                },
+                transform: [{ type: "geoshape", projection: "projection" }],
+              },
+            ],
+          };
+          vegaEmbed("#map", worldMap);
+        </script>
+      </div>
+
+      <div id="vegalite">
+        <script>
+          var seaIce = {
+            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+            title: "Change in Mass of Global Glaciers over time",
+            data: {
+              url: "https://pkgstore.datahub.io/core/glacier-mass-balance/glaciers_csv/data/c04ec0dab848ef8f9b179a2cca11b616/glaciers_csv.csv",
+            },
+            width: 400,
+            height: 200,
+            mark: { type: "line", tooltip: true },
+            encoding: {
+              x: {
+                field: "Year",
+                title: "Year",
+                type: "temporal",
+              },
+              y: {
+                field: "Mean cumulative mass balance",
+                title: "Mean cumulative mass balance",
+                type: "quantitative",
+              },
+              tooltip: [
+                { field: "Number of observations", type: "quantitative" },
+              ],
+            },
+          };
+          vegaEmbed("#vegalite", seaIce);
+        </script>
+      </div>
+
+      <div id="barchart">
+        <script>
+          var barchart = {
+            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+            description:
+              "A bar chart with highlighting on hover and selecting on click. (Inspired by Tableau's interaction style.)",
+            data: {
+              values: [
+                { Country: "United States", "CO2 Emission": 14.67 },
+                { Country: "World", "CO2 Emission": 34.81 },
+              ],
+            },
+            params: [
+              {
+                name: "highlight",
+                select: { type: "point", on: "mouseover" },
+              },
+              { name: "select", select: "point" },
+            ],
+            mark: {
+              type: "bar",
+              fill: "#4C78A8",
+              stroke: "black",
+              cursor: "pointer",
+            },
+            encoding: {
+              x: { field: "Country", type: "ordinal" },
+              y: { field: "CO2 Emission", type: "quantitative" },
+              fillOpacity: {
+                condition: { param: "select", value: 1 },
+                value: 0.3,
+              },
+              strokeWidth: {
+                condition: [
+                  {
+                    param: "select",
+                    empty: false,
+                    value: 2,
+                  },
+                  {
+                    param: "highlight",
+                    empty: false,
+                    value: 1,
+                  },
+                ],
+                value: 0,
+              },
+            },
+            config: {
+              scale: {
+                bandPaddingInner: 0.2,
+              },
+            },
+          };
+          vegaEmbed("#barchart", barchart);
+        </script>
+      </div>
+    </div>
+
+    <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
+    <footer class="footer">
+      <div class="links"></div>
+    </footer>
+  </body>
+</html>
